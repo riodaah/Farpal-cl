@@ -8,8 +8,16 @@
 <meta property="og:title" content="Farpal Ltda. — Aseo Industrial y Servicios Generales">
 <meta property="og:description" content="Limpieza industrial, mantención de edificios y servicios generales en Santiago. +14 años en terreno. Cotiza hoy por WhatsApp.">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://farpal.cl">
-<meta property="og:image" content="https://farpal.cl/assets/hero-team.png">
+<meta property="og:site_name" content="Farpal Ltda.">
+<meta property="og:locale" content="es_CL">
+<!-- Cuando farpal.cl apunte a Vercel, se puede cambiar og:url a https://farpal.cl (la imagen en vercel.app sigue funcionando igual) -->
+<meta property="og:url" content="https://farpal-cl.vercel.app/">
+<meta property="og:image" content="https://farpal-cl.vercel.app/assets/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Farpal Ltda. Servicios Generales — equipo en terreno">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://farpal-cl.vercel.app/assets/og-image.jpg">
 <link rel="icon" type="image/png" href="assets/favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -22,6 +30,8 @@
   "name": "Farpal Ltda.",
   "description": "Aseo industrial y servicios generales",
   "url": "https://farpal.cl",
+  "image": "https://farpal-cl.vercel.app/assets/og-image.jpg",
+  "logo": "https://farpal-cl.vercel.app/assets/logo-farpal.png",
   "telephone": "+56950111981",
   "email": "contacto@farpal.cl",
   "address": {
@@ -98,8 +108,9 @@ a{color:inherit;text-decoration:none}
 .hero-badge .dot{width:8px;height:8px;border-radius:50%;background:#25d366;box-shadow:0 0 0 4px rgba(37,211,102,.25);animation:pulse 2s infinite}
 @keyframes pulse{0%,100%{box-shadow:0 0 0 4px rgba(37,211,102,.25)}50%{box-shadow:0 0 0 8px rgba(37,211,102,.08)}}
 .hero-actions{display:flex;gap:14px;flex-wrap:wrap}
-.hero-img{position:relative;border-radius:20px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.4)}
-.hero-img img{width:100%;height:100%;object-fit:cover;min-height:340px}
+.hero-img{margin:0;position:relative;border-radius:20px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.4);aspect-ratio:5/6;max-height:560px}
+.hero-img img{width:100%;height:100%;object-fit:cover;object-position:50% 40%}
+.hero-img figcaption{position:absolute;left:14px;bottom:14px;z-index:1;background:rgba(22,27,77,.78);backdrop-filter:blur(6px);color:#fff;font-size:.8rem;font-weight:600;padding:8px 14px;border-radius:999px}
 .hero-img::after{content:"";position:absolute;inset:0;border-radius:20px;border:1px solid rgba(255,255,255,.15)}
 .hero-stats{position:relative;display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(255,255,255,.14);border-top:1px solid rgba(255,255,255,.14)}
 .hero-stats>div{background:var(--navy-deep);padding:26px 18px;text-align:center}
@@ -139,20 +150,65 @@ a{color:inherit;text-decoration:none}
 .about-visual img{width:100%;border-radius:20px;object-fit:cover;box-shadow:var(--shadow)}
 .about-badge{position:absolute;bottom:-16px;left:50%;transform:translateX(-50%);background:var(--orange);color:#fff;font-family:'Sora';font-weight:800;font-size:1rem;padding:14px 28px;border-radius:999px;white-space:nowrap;box-shadow:0 8px 24px rgba(238,90,54,.4)}
 
-/* ---------- Servicios ---------- */
-.services-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
-.service{background:var(--white);border:1px solid var(--line);border-radius:var(--radius);padding:26px 22px;transition:transform .3s,box-shadow .3s}
-.service:hover{transform:translateY(-6px);box-shadow:var(--shadow)}
-.service .icon{width:46px;height:46px;border-radius:12px;background:rgba(45,52,143,.08);color:var(--navy);display:flex;align-items:center;justify-content:center;margin-bottom:16px}
+/* ---------- Servicios (tarjetas con foto) ---------- */
+.services-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;text-align:left}
+.service{display:flex;flex-direction:column;background:var(--white);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;cursor:pointer;font:inherit;color:inherit;text-align:left;padding:0;transition:transform .3s,box-shadow .3s}
+.service:hover,.service:focus-visible{transform:translateY(-6px);box-shadow:0 16px 40px rgba(30,36,100,.16)}
+.service:focus-visible{outline:3px solid var(--amber);outline-offset:2px}
+.service-photo{position:relative;aspect-ratio:4/3;overflow:hidden;background:var(--bg)}
+.service-photo img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+.service:hover .service-photo img{transform:scale(1.06)}
+.service-photo::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(22,27,77,.55),transparent 55%)}
+.service-count{position:absolute;right:12px;top:12px;z-index:1;display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.94);color:var(--navy-dark);font-size:.75rem;font-weight:700;padding:5px 10px;border-radius:999px}
+.service-body{padding:20px 20px 22px;display:flex;flex-direction:column;flex:1}
 .service h3{font-size:1rem;color:var(--navy-dark);margin-bottom:8px}
-.service p{font-size:.88rem;color:var(--muted)}
+.service p{font-size:.88rem;color:var(--muted);flex:1}
+.service-link{margin-top:14px;font-size:.86rem;font-weight:700;color:var(--orange);display:inline-flex;align-items:center;gap:6px}
+.service-link svg{transition:transform .2s}
+.service:hover .service-link svg{transform:translateX(4px)}
 
-/* ---------- Galería ---------- */
-.gallery{padding:64px 0;background:var(--navy-deep);overflow:hidden}
-.gallery-title{text-align:center;color:#fff;font-size:clamp(1.4rem,2.8vw,2rem);margin-bottom:40px}
-.gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-.gallery-grid img{width:100%;height:260px;object-fit:cover;border-radius:14px;transition:transform .4s,filter .3s}
-.gallery-grid img:hover{transform:scale(1.03);filter:brightness(1.1)}
+/* ---------- Nuestros trabajos (portafolio) ---------- */
+.works{background:var(--navy-deep);color:#fff}
+.works .section-title{color:#fff}
+.works .section-lead{color:rgba(255,255,255,.75)}
+.filters{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin:-12px 0 34px}
+.filter{font:inherit;font-size:.86rem;font-weight:600;color:rgba(255,255,255,.82);background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.16);padding:9px 16px;border-radius:999px;cursor:pointer;transition:background .2s,color .2s,border-color .2s}
+.filter:hover{border-color:rgba(255,255,255,.4);color:#fff}
+.filter.active{background:var(--orange);border-color:var(--orange);color:#fff}
+.filter small{opacity:.7;font-weight:500;margin-left:4px}
+.works-grid{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:160px;grid-auto-flow:dense;gap:14px}
+.work{position:relative;grid-row:span 2;color:#fff;font:inherit;border-radius:14px;overflow:hidden;cursor:zoom-in;padding:0;border:none;background:rgba(255,255,255,.05);animation:work-in .45s ease both}
+.work.wide{grid-column:span 2}
+.work img{width:100%;height:100%;object-fit:cover;transition:transform .5s,filter .3s}
+.work:hover img{transform:scale(1.05);filter:brightness(1.08)}
+.work .cap{position:absolute;inset:auto 0 0 0;padding:28px 14px 12px;background:linear-gradient(to top,rgba(10,13,40,.85),transparent);font-size:.82rem;font-weight:600;text-align:left;opacity:0;transform:translateY(8px);transition:opacity .25s,transform .25s}
+.work .cap span{display:block;font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--amber);margin-bottom:2px}
+.work:hover .cap,.work:focus-visible .cap{opacity:1;transform:none}
+.work:focus-visible{outline:3px solid var(--amber);outline-offset:2px}
+@keyframes work-in{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.works-more{text-align:center;margin-top:36px}
+.works-more[hidden]{display:none}
+
+/* ---------- Lightbox ---------- */
+.lb{position:fixed;inset:0;z-index:500;background:rgba(8,10,30,.96);display:none;flex-direction:column;align-items:center;justify-content:center;padding:64px 72px 24px}
+.lb.open{display:flex;animation:lb-in .2s ease}
+@keyframes lb-in{from{opacity:0}to{opacity:1}}
+.lb-stage{flex:1;min-height:0;width:100%;display:flex;align-items:center;justify-content:center}
+.lb-stage img{max-width:100%;max-height:100%;object-fit:contain;border-radius:10px;box-shadow:0 20px 60px rgba(0,0,0,.5);user-select:none;-webkit-user-drag:none}
+.lb-bar{width:100%;max-width:960px;display:flex;align-items:center;justify-content:space-between;gap:16px;padding-top:16px;color:#fff;flex-wrap:wrap}
+.lb-cap b{display:block;font-family:'Sora';font-size:1rem}
+.lb-cap span{font-size:.85rem;color:rgba(255,255,255,.65)}
+.lb-bar .btn{padding:10px 20px;font-size:.88rem}
+.lb-btn{position:absolute;width:48px;height:48px;border-radius:50%;border:none;background:rgba(255,255,255,.12);color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .2s}
+.lb-btn:hover{background:rgba(255,255,255,.25)}
+.lb-btn:focus-visible{outline:3px solid var(--amber)}
+.lb-close{top:14px;right:14px}
+.lb-prev{left:14px;top:50%;transform:translateY(-50%)}
+.lb-next{right:14px;top:50%;transform:translateY(-50%)}
+.lb-count{position:absolute;top:24px;left:24px;color:rgba(255,255,255,.7);font-size:.85rem;font-weight:600}
+.lb.single .lb-prev,.lb.single .lb-next{display:none}
+body.lb-lock{overflow:hidden}
+body.lb-lock .wsp-float{display:none}
 
 /* ---------- Proceso ---------- */
 .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;counter-reset:step}
@@ -210,7 +266,7 @@ a{color:inherit;text-decoration:none}
 /* ---------- Responsive ---------- */
 @media (max-width:960px){
   .hero-grid{grid-template-columns:1fr;padding:64px 24px 72px}
-  .hero-img{max-height:320px}
+  .hero-img{aspect-ratio:16/10;max-height:none}
   .hero-stats{grid-template-columns:repeat(2,1fr)}
   .giro-grid{grid-template-columns:1fr 1fr}
   .about-grid{grid-template-columns:1fr;gap:40px}
@@ -219,7 +275,7 @@ a{color:inherit;text-decoration:none}
   .testimonials{grid-template-columns:1fr}
   .contact-grid{grid-template-columns:1fr}
   .footer-grid{grid-template-columns:1fr}
-  .gallery-grid{grid-template-columns:1fr 1fr}
+  .works-grid{grid-template-columns:repeat(3,1fr)}
   .client-item{min-width:148px;height:72px}
   .client-item img{max-height:44px;max-width:122px}
 }
@@ -232,9 +288,21 @@ a{color:inherit;text-decoration:none}
   .giro-grid,.services-grid,.steps{grid-template-columns:1fr}
   .section{padding:64px 0}
   .cta{padding:48px 24px}
-  .gallery-grid{grid-template-columns:1fr}
-  .gallery-grid img{height:200px}
-  .hero-img{max-height:260px}
+  .services-grid{grid-template-columns:1fr 1fr;gap:14px}
+  .service-body{padding:14px 14px 16px}
+  .service h3{font-size:.92rem}
+  .service p{display:none}
+  .service-link{margin-top:8px;font-size:.8rem}
+  .works-grid{grid-template-columns:1fr 1fr;grid-auto-rows:120px;gap:10px}
+  .work .cap{opacity:1;transform:none;font-size:.74rem;padding:22px 10px 8px}
+  .filters{flex-wrap:nowrap;overflow-x:auto;justify-content:flex-start;margin:-12px -24px 26px;padding:0 24px 6px;scrollbar-width:none}
+  .filters::-webkit-scrollbar{display:none}
+  .filter{flex:none}
+  .lb{padding:60px 8px 16px}
+  .lb-prev,.lb-next{width:40px;height:40px;background:rgba(0,0,0,.45)}
+  .lb-prev{left:12px}.lb-next{right:12px}
+  .lb-bar{padding:12px 8px 0}
+  .hero-img{aspect-ratio:4/3}
   .client-item{min-width:130px;height:66px;padding:8px 10px}
   .client-item img{max-height:38px;max-width:108px}
 }
@@ -252,9 +320,9 @@ a{color:inherit;text-decoration:none}
     </button>
     <ul class="nav-links">
       <li><a href="#que-hacemos">Qué hacemos</a></li>
-      <li><a href="#quienes-somos">Quiénes somos</a></li>
       <li><a href="#servicios">Servicios</a></li>
-      <li><a href="#testimonios">Testimonios</a></li>
+      <li><a href="#trabajos">Trabajos</a></li>
+      <li><a href="#quienes-somos">Quiénes somos</a></li>
       <li><a href="#contacto">Contacto</a></li>
       <li><a class="btn btn-wsp" href="https://wa.me/56950111981?text=Hola%20Farpal%2C%20quiero%20cotizar%20un%20servicio" target="_blank" rel="noopener">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><use href="#wsp"/></svg>
@@ -283,9 +351,10 @@ a{color:inherit;text-decoration:none}
         <a class="btn btn-ghost" href="#servicios">Ver servicios</a>
       </div>
     </div>
-    <div class="hero-img" data-aos="fade-left" data-aos-duration="800" data-aos-delay="200">
-      <img src="assets/hero-team.png" alt="Equipo Farpal Ltda. trabajando en terreno - 14 años de experiencia">
-    </div>
+    <figure class="hero-img" data-aos="fade-left" data-aos-duration="800" data-aos-delay="200">
+      <img src="assets/trabajos/aseo-01.webp" alt="Trabajadores de Farpal limpiando vidrios en altura desde un andamio colgante" width="1086" height="1448" fetchpriority="high">
+      <figcaption>Limpieza de vidrios en altura</figcaption>
+    </figure>
   </div>
   <div class="container hero-stats">
     <div data-aos="fade-up" data-aos-delay="100"><b>+14</b><span>Años en terreno</span></div>
@@ -359,7 +428,7 @@ a{color:inherit;text-decoration:none}
       </ul>
     </div>
     <div class="about-visual" data-aos="fade-left" data-aos-duration="700">
-      <img src="assets/metro-worker.png" alt="Trabajador Farpal realizando aseo industrial en estación de Metro de Santiago">
+      <img src="assets/trabajos/aseo-03.webp" alt="Equipo de Farpal Ltda. en terreno junto a sus carros de aseo" loading="lazy" width="1448" height="1086">
       <div class="about-badge">+14 años de experiencia</div>
     </div>
   </div>
@@ -370,61 +439,53 @@ a{color:inherit;text-decoration:none}
   <div class="container center">
     <span class="kicker">Nuestros servicios</span>
     <h2 class="section-title">Todo lo que tu empresa necesita, en un solo lugar</h2>
-    <p class="section-lead">Servicios profesionales para empresas, edificios, obras y comercios.</p>
+    <p class="section-lead">Haz clic en cada servicio para ver fotos reales de nuestros trabajos.</p>
     <div class="services-grid">
-      <div class="service" data-aos="fade-up" data-aos-delay="0">
-        <div class="icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 22h18"/><path d="M6 18V9l6-5 6 5v9"/><path d="M10 18v-4h4v4"/></svg></div>
-        <h3>Aseo industrial</h3>
-        <p>Limpieza profunda de plantas, bodegas y espacios industriales.</p>
-      </div>
-      <div class="service" data-aos="fade-up" data-aos-delay="50">
-        <div class="icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg></div>
-        <h3>Limpieza post-obra</h3>
-        <p>Entrega impecable de obras nuevas, remodelaciones y ampliaciones.</p>
-      </div>
-      <div class="service" data-aos="fade-up" data-aos-delay="100">
-        <div class="icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></div>
-        <h3>Mantención de edificios</h3>
-        <p>Planes periódicos de aseo y mantención para edificios y oficinas.</p>
-      </div>
-      <div class="service" data-aos="fade-up" data-aos-delay="150">
-        <div class="icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l7 4v6c0 5-3.5 8.5-7 10-3.5-1.5-7-5-7-10V6z"/><path d="M9 12l2 2 4-4"/></svg></div>
-        <h3>Sanitización y desinfección</h3>
-        <p>Ambientes seguros y libres de virus, bacterias y plagas.</p>
-      </div>
-      <div class="service" data-aos="fade-up" data-aos-delay="200">
-        <div class="icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 3l2 2-9 9-4 1 1-4z"/><path d="M15 7l2 2"/><path d="M4 21h16"/></svg></div>
-        <h3>Pintura</h3>
-        <p>Pintura interior y exterior, fachadas, demarcación y terminaciones.</p>
-      </div>
-      <div class="service" data-aos="fade-up" data-aos-delay="250">
-        <div class="icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg></div>
-        <h3>Gasfitería e instalaciones</h3>
-        <p>Reparaciones, redes sanitarias e instalaciones al instante.</p>
-      </div>
-      <div class="service" data-aos="fade-up" data-aos-delay="300">
-        <div class="icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18"/><path d="M5 21h14"/><path d="M5 3h14"/><path d="M7 3v4M17 3v4M7 17v4M17 17v4"/></svg></div>
-        <h3>Trabajos en altura</h3>
-        <p>Limpieza de fachadas y vidrios, con plataformas elevadoras certificadas.</p>
-      </div>
-      <div class="service" data-aos="fade-up" data-aos-delay="350">
-        <div class="icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M6 7V5a2 2 0 012-2h8a2 2 0 012 2v2"/></svg></div>
-        <h3>Obras menores y cierres</h3>
-        <p>Cierres perimetrales, reparaciones y habilitación de espacios.</p>
-      </div>
+      <button type="button" class="service" data-cat="aseo" data-aos="fade-up" data-aos-delay="0">
+        <div class="service-photo"><img src="assets/trabajos/aseo-04-t.webp" alt="Fregadora industrial de Farpal en estacionamiento" loading="lazy"><span class="service-count"></span></div>
+        <div class="service-body"><h3>Aseo industrial, convencional y final de obra</h3><p>Oficinas, plantas, estacionamientos y obras nuevas. Incluye vidrios y fachadas en altura.</p><span class="service-link"></span></div>
+      </button>
+      <button type="button" class="service" data-cat="tabiqueria" data-aos="fade-up" data-aos-delay="50">
+        <div class="service-photo"><img src="assets/trabajos/tabiqueria-01-t.webp" alt="Montaje de estructura metálica para tabiques" loading="lazy"><span class="service-count"></span></div>
+        <div class="service-body"><h3>Tabiquería y cielos</h3><p>Tabiques, cielos falsos y remodelación de oficinas y espacios comerciales.</p><span class="service-link"></span></div>
+      </button>
+      <button type="button" class="service" data-cat="pintura" data-aos="fade-up" data-aos-delay="100">
+        <div class="service-photo"><img src="assets/trabajos/pintura-01-t.webp" alt="Pintura con pistola airless en módulo" loading="lazy"><span class="service-count"></span></div>
+        <div class="service-body"><h3>Pintura</h3><p>Interiores, fachadas en altura, estructuras metálicas y pintura con pistola airless.</p><span class="service-link"></span></div>
+      </button>
+      <button type="button" class="service" data-cat="pisos" data-aos="fade-up" data-aos-delay="150">
+        <div class="service-photo"><img src="assets/trabajos/pisos-01-t.webp" alt="Instalación de piso vinílico" loading="lazy"><span class="service-count"></span></div>
+        <div class="service-body"><h3>Pisos y revestimientos</h3><p>Piso vinílico, porcelanato y revestimientos cerámicos en muros.</p><span class="service-link"></span></div>
+      </button>
+      <button type="button" class="service" data-cat="gasfiteria" data-aos="fade-up" data-aos-delay="200">
+        <div class="service-photo"><img src="assets/trabajos/gasfiteria-01-t.webp" alt="Corte de estructuras metálicas con esmeril" loading="lazy"><span class="service-count"></span></div>
+        <div class="service-body"><h3>Gasfitería y soldaduras</h3><p>Redes de gas y agua, soldadura, rejas, cierres y estructuras metálicas.</p><span class="service-link"></span></div>
+      </button>
+      <button type="button" class="service" data-cat="climatizacion" data-aos="fade-up" data-aos-delay="250">
+        <div class="service-photo"><img src="assets/trabajos/climatizacion-02-t.webp" alt="Técnico cargando equipo de aire acondicionado" loading="lazy"><span class="service-count"></span></div>
+        <div class="service-body"><h3>Climatización</h3><p>Instalación y mantención de equipos de aire acondicionado.</p><span class="service-link"></span></div>
+      </button>
+      <button type="button" class="service" data-cat="electricidad" data-aos="fade-up" data-aos-delay="300">
+        <div class="service-photo"><img src="assets/trabajos/electricidad-01-t.webp" alt="Técnico trabajando en tablero eléctrico" loading="lazy"><span class="service-count"></span></div>
+        <div class="service-body"><h3>Instalaciones eléctricas</h3><p>Tableros, circuitos, iluminación y mantención eléctrica.</p><span class="service-link"></span></div>
+      </button>
+      <button type="button" class="service" data-cat="sanitizacion" data-aos="fade-up" data-aos-delay="350">
+        <div class="service-photo"><img src="assets/trabajos/sanitizacion-01-t.webp" alt="Limpieza de cámara de alcantarillado con hidrojet" loading="lazy"><span class="service-count"></span></div>
+        <div class="service-body"><h3>Alcantarillado y sanitización</h3><p>Destape y limpieza de cámaras, hidrolavado y sanitización de espacios.</p><span class="service-link"></span></div>
+      </button>
     </div>
   </div>
 </section>
 
-<!-- ===== Galería de trabajo ===== -->
-<section class="gallery">
-  <div class="container">
-    <h2 class="gallery-title" data-aos="fade-up">Nuestro trabajo en terreno</h2>
-    <div class="gallery-grid">
-      <img src="assets/oficinas.png" alt="Limpieza de oficinas corporativas" data-aos="zoom-in" data-aos-delay="0">
-      <img src="assets/metro-worker.png" alt="Aseo en estación de Metro de Santiago" data-aos="zoom-in" data-aos-delay="100">
-      <img src="assets/before-after.png" alt="Antes y después - Trabajo de pintura y limpieza" data-aos="zoom-in" data-aos-delay="200">
-    </div>
+<!-- ===== Nuestros trabajos ===== -->
+<section class="section works" id="trabajos">
+  <div class="container center">
+    <span class="kicker">Nuestros trabajos</span>
+    <h2 class="section-title">Así trabajamos en terreno</h2>
+    <p class="section-lead">Fotos reales de nuestro equipo. Filtra por servicio y haz clic en cualquier foto para ampliarla.</p>
+    <div class="filters" role="tablist" aria-label="Filtrar trabajos por servicio"></div>
+    <div class="works-grid"></div>
+    <div class="works-more"><button type="button" class="btn btn-primary" id="works-more"></button></div>
   </div>
 </section>
 
@@ -524,6 +585,7 @@ a{color:inherit;text-decoration:none}
           <li><a href="#que-hacemos">Qué hacemos</a></li>
           <li><a href="#quienes-somos">Quiénes somos</a></li>
           <li><a href="#servicios">Servicios</a></li>
+          <li><a href="#trabajos">Trabajos</a></li>
           <li><a href="#testimonios">Testimonios</a></li>
           <li><a href="#contacto">Contacto</a></li>
         </ul>
@@ -545,6 +607,19 @@ a{color:inherit;text-decoration:none}
   </div>
 </footer>
 
+<!-- ===== Lightbox galería ===== -->
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Galería de fotos" aria-hidden="true">
+  <span class="lb-count" id="lb-count"></span>
+  <button type="button" class="lb-btn lb-close" id="lb-close" aria-label="Cerrar galería"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg></button>
+  <button type="button" class="lb-btn lb-prev" id="lb-prev" aria-label="Foto anterior"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></button>
+  <button type="button" class="lb-btn lb-next" id="lb-next" aria-label="Foto siguiente"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg></button>
+  <div class="lb-stage" id="lb-stage"><img id="lb-img" alt=""></div>
+  <div class="lb-bar">
+    <div class="lb-cap"><b id="lb-title"></b><span id="lb-cat"></span></div>
+    <a class="btn btn-wsp" id="lb-wsp" href="#" target="_blank" rel="noopener"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><use href="#wsp"/></svg><span>Cotizar este servicio</span></a>
+  </div>
+</div>
+
 <!-- ===== WhatsApp flotante ===== -->
 <a class="wsp-float" href="https://wa.me/56950111981?text=Hola%20Farpal%2C%20quiero%20cotizar%20un%20servicio" target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp">
   <svg viewBox="0 0 24 24" fill="#fff"><use href="#wsp"/></svg>
@@ -553,7 +628,7 @@ a{color:inherit;text-decoration:none}
 <!-- AOS Animate On Scroll -->
 <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
 <script>
-AOS.init({
+if (window.AOS) AOS.init({
   duration: 650,
   easing: 'ease-out-cubic',
   once: true,
@@ -587,6 +662,107 @@ const statsObserver = new IntersectionObserver((entries) => {
 }, { threshold: 0.5 });
 
 document.querySelectorAll('.hero-stats').forEach(el => statsObserver.observe(el));
+
+// ===== Galería de trabajos =====
+// Para agregar fotos: subir assets/trabajos/<categoria>-NN.webp y -NN-t.webp y sumar una línea aquí.
+// Formato: [número, descripción, 1 si la foto es horizontal]
+const PHOTOS = {"aseo":[["01","Limpieza de vidrios en altura con andamio colgante",0],["02","Limpieza de fachada vidriada con trabajadores descolgados",0],["03","Equipo Farpal en terreno con carros de aseo",1],["04","Fregadora industrial en estacionamiento subterráneo",0],["05","Lavado de piso con enceradora en planta libre",0],["06","Pulido de pisos con máquina industrial",0],["07","Fregado mecánico de pisos en oficinas",1],["08","Barredora industrial en estacionamiento",0],["09","Limpieza en altura con plataforma elevadora",0],["10","Limpieza de vidrios interiores con pértiga",0],["11","Limpieza de cristales en obra nueva",0],["12","Limpieza de barandas de vidrio",0],["13","Aseo final de obra en planta libre",0],["14","Aseo final de obra en piso nuevo",0],["15","Limpieza final de obra con mopa",0],["16","Limpieza de piso en oficina recién terminada",0],["17","Lavado de piso con enceradora",0],["18","Aspirado de revestimientos en fachada",1],["19","Aspirado de piso flotante",0],["20","Limpieza profunda de alfombras con máquina",0],["21","Pulido de alfombra en oficina vacía",0],["22","Aseo de sala de reuniones",0],["23","Limpieza y desinfección de superficies",1]],"tabiqueria":[["01","Montaje de estructura metálica para tabiques",0],["02","Estructura de tabiquería en oficina",1],["03","Tabiquería con marcos de puertas",0],["04","Montaje de tabiques en camarines",0],["05","Instalación de cielo falso modular",1],["06","Remodelación de cielos en oficina",0],["07","Instalación de planchas de tabique",1],["08","Terminación de muros con pasta",0]],"pisos":[["01","Instalación de piso vinílico",1],["02","Instalación de porcelanato de gran formato",0],["03","Revestimiento cerámico en muro",0]],"pintura":[["01","Pintura con pistola airless en módulo",0],["02","Pintura de interiores",0],["03","Pintura de fachada en altura con andamio",0],["04","Pintura de estructuras metálicas en faena",0]],"gasfiteria":[["01","Corte y armado de estructuras metálicas",0],["02","Soldadura de rejas y protecciones",0],["03","Soldadura de planchas de acero",0],["04","Instalación de red de gas y calefont",0]],"climatizacion":[["01","Instalación y carga de equipo de aire acondicionado",0],["02","Mantención de equipo split",0]],"electricidad":[["01","Instalación y mantención de tableros eléctricos",0]],"sanitizacion":[["01","Limpieza y destape de cámaras de alcantarillado",0],["02","Hidrolavado y sanitización de pavimentos",0]]};
+const CATS = {
+  aseo:{name:'Aseo industrial y final de obra', short:'Aseo'},
+  tabiqueria:{name:'Tabiquería y cielos', short:'Tabiquería'},
+  pintura:{name:'Pintura', short:'Pintura'},
+  pisos:{name:'Pisos y revestimientos', short:'Pisos'},
+  gasfiteria:{name:'Gasfitería y soldaduras', short:'Gasfitería'},
+  climatizacion:{name:'Climatización', short:'Climatización'},
+  electricidad:{name:'Instalaciones eléctricas', short:'Electricidad'},
+  sanitizacion:{name:'Alcantarillado y sanitización', short:'Sanitización'}
+};
+const FEATURED = ['aseo-02','tabiqueria-02','pintura-03','gasfiteria-02','aseo-07','climatizacion-01','aseo-05','pintura-01','pisos-01','sanitizacion-01','tabiqueria-01','electricidad-01','aseo-10'];
+const ALL = Object.entries(PHOTOS).flatMap(([cat, list]) => list.map(([n, cap, wide]) => ({id:`${cat}-${n}`, cat, cap, wide:!!wide})));
+const byId = Object.fromEntries(ALL.map(p => [p.id, p]));
+const src = (p, thumb) => `assets/trabajos/${p.id}${thumb ? '-t' : ''}.webp`;
+const WA = 'https://wa.me/56950111981?text=';
+const plural = n => n === 1 ? '1 foto' : `${n} fotos`;
+const arrow = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
+const camera = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 01-2 2H3a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h6l2 3h4a2 2 0 012 2z"/><circle cx="12" cy="13" r="4"/></svg>';
+
+// --- Lightbox ---
+const lb = document.getElementById('lb'), lbImg = document.getElementById('lb-img');
+let lbList = [], lbIdx = 0, lastFocus = null;
+function lbShow(i){
+  lbIdx = (i + lbList.length) % lbList.length;
+  const p = lbList[lbIdx];
+  lbImg.src = src(p); lbImg.alt = p.cap;
+  document.getElementById('lb-title').textContent = p.cap;
+  document.getElementById('lb-cat').textContent = CATS[p.cat].name;
+  document.getElementById('lb-count').textContent = lbList.length > 1 ? `${lbIdx + 1} / ${lbList.length}` : '';
+  document.getElementById('lb-wsp').href = WA + encodeURIComponent(`Hola Farpal, quiero cotizar: ${CATS[p.cat].name}`);
+  [lbList[lbIdx + 1], lbList[lbIdx - 1]].forEach(n => { if (n) new Image().src = src(n); });
+}
+function lbOpen(list, i){
+  lbList = list; lastFocus = document.activeElement;
+  lb.classList.toggle('single', list.length < 2);
+  lbShow(i); lb.classList.add('open'); lb.setAttribute('aria-hidden','false');
+  document.body.classList.add('lb-lock'); document.getElementById('lb-close').focus();
+}
+function lbClose(){
+  lb.classList.remove('open'); lb.setAttribute('aria-hidden','true');
+  document.body.classList.remove('lb-lock'); lbImg.removeAttribute('src');
+  if (lastFocus) lastFocus.focus();
+}
+document.getElementById('lb-close').onclick = lbClose;
+document.getElementById('lb-prev').onclick = () => lbShow(lbIdx - 1);
+document.getElementById('lb-next').onclick = () => lbShow(lbIdx + 1);
+document.getElementById('lb-stage').addEventListener('click', e => { if (e.target.id === 'lb-stage') lbClose(); });
+document.addEventListener('keydown', e => {
+  if (!lb.classList.contains('open')) return;
+  if (e.key === 'Escape') lbClose();
+  if (e.key === 'ArrowRight') lbShow(lbIdx + 1);
+  if (e.key === 'ArrowLeft') lbShow(lbIdx - 1);
+});
+let touchX = null;
+lb.addEventListener('touchstart', e => { touchX = e.touches[0].clientX; }, {passive:true});
+lb.addEventListener('touchend', e => {
+  if (touchX === null || lbList.length < 2) return;
+  const dx = e.changedTouches[0].clientX - touchX; touchX = null;
+  if (Math.abs(dx) > 45) lbShow(lbIdx + (dx < 0 ? 1 : -1));
+});
+
+// --- Tarjetas de servicio ---
+document.querySelectorAll('.service[data-cat]').forEach(card => {
+  const list = ALL.filter(p => p.cat === card.dataset.cat);
+  card.querySelector('.service-count').innerHTML = camera + plural(list.length);
+  card.querySelector('.service-link').innerHTML = (list.length === 1 ? 'Ver foto' : 'Ver galería') + arrow;
+  card.setAttribute('aria-label', `${card.querySelector('h3').textContent}: ver ${plural(list.length)}`);
+  card.addEventListener('click', () => lbOpen(list, 0));
+});
+
+// --- Portafolio con filtros ---
+const grid = document.querySelector('.works-grid'), filters = document.querySelector('.filters'), moreBtn = document.getElementById('works-more');
+let current = 'todos', expanded = false, visible = [];
+function render(){
+  if (current === 'todos') {
+    const feat = FEATURED.map(id => byId[id]);
+    visible = expanded ? feat.concat(ALL.filter(p => !FEATURED.includes(p.id))) : feat;
+  } else visible = ALL.filter(p => p.cat === current);
+  grid.innerHTML = visible.map((p, i) =>
+    `<button type="button" class="work${p.wide ? ' wide' : ''}" data-i="${i}" style="animation-delay:${Math.min(i, 12) * 35}ms" aria-label="Ampliar: ${p.cap}">
+      <img src="${src(p, true)}" alt="${p.cap}" loading="lazy">
+      <span class="cap"><span>${CATS[p.cat].short}</span>${p.cap}</span>
+    </button>`).join('');
+  moreBtn.parentElement.hidden = !(current === 'todos' && !expanded);
+}
+filters.innerHTML = [['todos', 'Todos', ALL.length], ...Object.entries(CATS).map(([k, c]) => [k, c.short, PHOTOS[k].length])]
+  .map(([k, label, n]) => `<button type="button" class="filter${k === 'todos' ? ' active' : ''}" role="tab" aria-selected="${k === 'todos'}" data-f="${k}">${label}<small>${n}</small></button>`).join('');
+filters.addEventListener('click', e => {
+  const b = e.target.closest('.filter'); if (!b) return;
+  filters.querySelectorAll('.filter').forEach(x => { x.classList.toggle('active', x === b); x.setAttribute('aria-selected', x === b); });
+  current = b.dataset.f; render();
+});
+grid.addEventListener('click', e => { const w = e.target.closest('.work'); if (w) lbOpen(visible, +w.dataset.i); });
+moreBtn.textContent = `Ver todos los trabajos (${ALL.length})`;
+moreBtn.addEventListener('click', () => { expanded = true; render(); });
+render();
 </script>
 </body>
 </html>

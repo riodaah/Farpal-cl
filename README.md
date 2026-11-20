@@ -36,3 +36,13 @@ Sitio estático (HTML/CSS/JS en un solo archivo). Para desplegar en Vercel: impo
 
 - Nombres del equipo (sección eliminada temporalmente — agregar cuando se tengan los datos)
 - Verificar que las fotos se vean correctamente en producción
+
+## Fotos de trabajos (galería)
+
+Las fotos están en `assets/trabajos/` con el formato `<servicio>-NN.webp` (tamaño grande, para el visor) y `<servicio>-NN-t.webp` (miniatura, para la grilla).
+Servicios: `aseo`, `tabiqueria`, `pintura`, `pisos`, `gasfiteria`, `climatizacion`, `electricidad`, `sanitizacion`.
+
+Para agregar una foto: sube los dos archivos y agrega una línea en el objeto `PHOTOS` al final de `index.html`
+(formato `["NN", "Descripción", 1 si es horizontal / 0 si es vertical]`). Las 13 fotos destacadas de "Todos" se definen en `FEATURED`.
+
+La imagen para redes sociales (vista previa al compartir el link) es `assets/og-image.jpg` (1200×630).
