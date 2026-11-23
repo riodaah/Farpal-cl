@@ -120,11 +120,14 @@ a{color:inherit;text-decoration:none}
 .clients{padding:44px 0;background:var(--white);border-bottom:1px solid var(--line)}
 .clients-label{text-align:center;font-size:.82rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:24px}
 .clients-marquee{position:relative;overflow:hidden;mask-image:linear-gradient(to right,transparent 0,#000 8%,#000 92%,transparent 100%)}
-.clients-row{display:flex;align-items:center;gap:26px;width:max-content;animation:scroll-clients 28s linear infinite}
+.clients-row{display:flex;align-items:center;gap:26px;width:max-content;animation:scroll-clients 46s linear infinite}
 .clients-marquee:hover .clients-row{animation-play-state:paused}
 .client-item{flex:none;display:flex;align-items:center;justify-content:center;min-width:180px;height:82px;padding:10px 18px;border:1px solid var(--line);border-radius:12px;background:#fff;transition:transform .25s,box-shadow .25s}
 .client-item:hover{transform:translateY(-2px);box-shadow:var(--shadow)}
 .client-item img{max-height:54px;max-width:148px;object-fit:contain}
+.client-name{flex-direction:column;text-align:center;line-height:1.15;gap:5px}
+.client-name b{font-family:'Sora',sans-serif;font-weight:800;font-size:.98rem;color:var(--navy-dark);letter-spacing:.02em;white-space:nowrap}
+.client-name span{font-size:.72rem;color:var(--muted);font-weight:600;white-space:nowrap}
 @keyframes scroll-clients{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 @media (prefers-reduced-motion: reduce){.clients-row{animation:none}}
 
@@ -148,6 +151,20 @@ a{color:inherit;text-decoration:none}
 .about-visual{position:relative}
 .about-visual img{width:100%;height:auto;aspect-ratio:4/3;border-radius:20px;object-fit:cover;box-shadow:var(--shadow)}
 .about-badge{position:absolute;bottom:-16px;left:50%;transform:translateX(-50%);background:var(--orange);color:#fff;font-family:'Sora';font-weight:800;font-size:1rem;padding:14px 28px;border-radius:999px;white-space:nowrap;box-shadow:0 8px 24px rgba(238,90,54,.4)}
+
+/* ---------- Mensaje del gerente ---------- */
+.ceo{display:grid;grid-template-columns:.8fr 1.2fr;align-items:stretch;background:linear-gradient(140deg,var(--navy-deep) 0%,var(--navy-dark) 55%,var(--navy) 100%);border-radius:28px;overflow:hidden;box-shadow:0 24px 60px rgba(22,27,77,.25);position:relative}
+.ceo::after{content:"";position:absolute;inset:0;background:radial-gradient(500px 260px at 95% 10%,rgba(238,90,54,.22),transparent 60%);pointer-events:none}
+.ceo-photo{margin:0;position:relative;min-height:420px}
+.ceo-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 22%}
+.ceo-body{position:relative;z-index:1;padding:56px 56px 52px;color:#fff;display:flex;flex-direction:column;justify-content:center}
+.ceo .kicker{color:var(--amber)}
+.ceo .kicker::before{background:var(--amber)}
+.ceo-quote{position:relative;font-size:clamp(1.02rem,1.5vw,1.16rem);line-height:1.75;color:rgba(255,255,255,.92);margin:6px 0 30px;padding-left:28px;border-left:3px solid var(--orange)}
+.ceo-body::before{content:"\201C";position:absolute;right:36px;top:18px;font-family:Georgia,serif;font-size:9rem;line-height:1;color:rgba(250,174,76,.16);pointer-events:none}
+.ceo-sign{display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.ceo-sign b{display:block;font-family:'Sora';font-size:1.15rem}
+.ceo-sign span{font-size:.9rem;color:rgba(255,255,255,.7)}
 
 /* ---------- Servicios (tarjetas con foto) ---------- */
 .services-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;text-align:left}
@@ -269,6 +286,9 @@ body.lb-lock .wsp-float{display:none}
   .hero-stats{grid-template-columns:repeat(2,1fr)}
   .giro-grid{grid-template-columns:1fr 1fr}
   .about-grid{grid-template-columns:1fr;gap:40px}
+  .ceo{grid-template-columns:1fr}
+  .ceo-photo{min-height:0;aspect-ratio:4/3}
+  .ceo-body{padding:40px 32px}
   .services-grid{grid-template-columns:1fr 1fr}
   .steps{grid-template-columns:1fr 1fr}
   .testimonials{grid-template-columns:1fr}
@@ -287,6 +307,10 @@ body.lb-lock .wsp-float{display:none}
   .giro-grid,.services-grid,.steps{grid-template-columns:1fr}
   .section{padding:64px 0}
   .cta{padding:48px 24px}
+  .ceo{border-radius:20px}
+  .ceo-photo{aspect-ratio:4/4.2}
+  .ceo-body{padding:32px 22px 30px}
+  .ceo-quote{padding-left:18px}
   .services-grid{grid-template-columns:1fr 1fr;gap:14px}
   .service-body{padding:14px 14px 16px}
   .service h3{font-size:.92rem}
@@ -369,19 +393,27 @@ body.lb-lock .wsp-float{display:none}
     <p class="clients-label">Confían en nosotros</p>
     <div class="clients-marquee" aria-label="Logos de clientes de Farpal">
       <div class="clients-row">
+        <div class="client-item client-name"><b>FERROVIAL</b><span>Construcción Chile S.A.</span></div>
         <div class="client-item"><img src="assets/logo-metro.png" alt="Metro de Santiago"></div>
-        <div class="client-item"><img src="assets/logo-mop.png" alt="Ministerio de Obras Publicas"></div>
+        <div class="client-item client-name"><b>BESALCO DRAGADOS</b></div>
+        <div class="client-item"><img src="assets/logo-mop.png" alt="Ministerio de Obras Públicas"></div>
+        <div class="client-item client-name"><b>CRTG</b><span>China Railway Tunnel Group</span></div>
         <div class="client-item"><img src="assets/logo-carrochile.png" alt="CarroChile"></div>
-        <div class="client-item"><img src="assets/logo-rio-claro.png" alt="Papelera Rio Claro"></div>
+        <div class="client-item client-name"><b>Delegación del País Vasco</b><span>en Chile</span></div>
+        <div class="client-item"><img src="assets/logo-rio-claro.png" alt="Papelera Río Claro"></div>
         <div class="client-item"><img src="assets/logo-corona.png" alt="Corona"></div>
         <div class="client-item"><img src="assets/logo-nutra-bien.png" alt="Nutra Bien"></div>
-
-        <div class="client-item"><img src="assets/logo-metro.png" alt=""></div>
-        <div class="client-item"><img src="assets/logo-mop.png" alt=""></div>
-        <div class="client-item"><img src="assets/logo-carrochile.png" alt=""></div>
-        <div class="client-item"><img src="assets/logo-rio-claro.png" alt=""></div>
-        <div class="client-item"><img src="assets/logo-corona.png" alt=""></div>
-        <div class="client-item"><img src="assets/logo-nutra-bien.png" alt=""></div>
+        <!-- copia para el desplazamiento continuo -->
+        <div aria-hidden="true" class="client-item client-name"><b>FERROVIAL</b><span>Construcción Chile S.A.</span></div>
+        <div aria-hidden="true" class="client-item"><img src="assets/logo-metro.png" alt=""></div>
+        <div aria-hidden="true" class="client-item client-name"><b>BESALCO DRAGADOS</b></div>
+        <div aria-hidden="true" class="client-item"><img src="assets/logo-mop.png" alt=""></div>
+        <div aria-hidden="true" class="client-item client-name"><b>CRTG</b><span>China Railway Tunnel Group</span></div>
+        <div aria-hidden="true" class="client-item"><img src="assets/logo-carrochile.png" alt=""></div>
+        <div aria-hidden="true" class="client-item client-name"><b>Delegación del País Vasco</b><span>en Chile</span></div>
+        <div aria-hidden="true" class="client-item"><img src="assets/logo-rio-claro.png" alt=""></div>
+        <div aria-hidden="true" class="client-item"><img src="assets/logo-corona.png" alt=""></div>
+        <div aria-hidden="true" class="client-item"><img src="assets/logo-nutra-bien.png" alt=""></div>
       </div>
     </div>
   </div>
@@ -429,6 +461,28 @@ body.lb-lock .wsp-float{display:none}
     <div class="about-visual" data-aos="fade-left" data-aos-duration="700">
       <img src="assets/trabajos/aseo-03.webp" alt="Equipo de Farpal Ltda. en terreno junto a sus carros de aseo" loading="lazy" width="1448" height="1086">
       <div class="about-badge">+14 años de experiencia</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Mensaje del gerente general ===== -->
+<section class="section" id="gerente">
+  <div class="container">
+    <div class="ceo" data-aos="fade-up" data-aos-duration="700">
+      <figure class="ceo-photo">
+        <img src="assets/gerente-general.webp" alt="Daniel Farfán Palavecino, gerente general de Farpal Ltda." loading="lazy" width="900" height="1125">
+      </figure>
+      <div class="ceo-body">
+        <span class="kicker">Mensaje del gerente general</span>
+        <blockquote class="ceo-quote">Durante más de 14 años he visto que cada empresa enfrenta desafíos distintos. Por eso, en FARPAL nos involucramos en cada proyecto para entregar soluciones confiables, con compromiso, calidad y cercanía. Nuestro propósito es ser un aliado estratégico para nuestros clientes y contribuir al buen funcionamiento de sus operaciones. Si buscas un equipo que se comprometa con tu empresa, conversemos.</blockquote>
+        <div class="ceo-sign">
+          <div><b>Daniel Farfán Palavecino</b><span>Gerente general · FARPAL Ltda.</span></div>
+          <a class="btn btn-wsp" href="https://wa.me/56950111981?text=Hola%20Farpal%2C%20quiero%20cotizar%20un%20servicio" target="_blank" rel="noopener">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><use href="#wsp"/></svg>
+            Conversemos
+          </a>
+        </div>
+      </div>
     </div>
   </div>
 </section>
