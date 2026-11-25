@@ -125,9 +125,9 @@ a{color:inherit;text-decoration:none}
 .client-item{flex:none;display:flex;align-items:center;justify-content:center;min-width:180px;height:82px;padding:10px 18px;border:1px solid var(--line);border-radius:12px;background:#fff;transition:transform .25s,box-shadow .25s}
 .client-item:hover{transform:translateY(-2px);box-shadow:var(--shadow)}
 .client-item img{max-height:54px;max-width:148px;object-fit:contain}
-.client-name{flex-direction:column;text-align:center;line-height:1.15;gap:5px}
-.client-name b{font-family:'Sora',sans-serif;font-weight:800;font-size:.98rem;color:var(--navy-dark);letter-spacing:.02em;white-space:nowrap}
-.client-name span{font-size:.72rem;color:var(--muted);font-weight:600;white-space:nowrap}
+.client-logo-label{gap:12px}
+.client-logo-label img{max-height:52px}
+.client-logo-label span{font-size:.74rem;font-weight:700;line-height:1.25;color:var(--navy-dark);text-align:left}
 @keyframes scroll-clients{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 @media (prefers-reduced-motion: reduce){.clients-row{animation:none}}
 
@@ -393,24 +393,24 @@ body.lb-lock .wsp-float{display:none}
     <p class="clients-label">Confían en nosotros</p>
     <div class="clients-marquee" aria-label="Logos de clientes de Farpal">
       <div class="clients-row">
-        <div class="client-item client-name"><b>FERROVIAL</b><span>Construcción Chile S.A.</span></div>
+        <div class="client-item"><img src="assets/logo-ferrovial.png" alt="Ferrovial Construcción Chile S.A."></div>
         <div class="client-item"><img src="assets/logo-metro.png" alt="Metro de Santiago"></div>
-        <div class="client-item client-name"><b>BESALCO DRAGADOS</b></div>
+        <div class="client-item"><img src="assets/logo-besalco-dragados.png" alt="Besalco Dragados"></div>
         <div class="client-item"><img src="assets/logo-mop.png" alt="Ministerio de Obras Públicas"></div>
-        <div class="client-item client-name"><b>CRTG</b><span>China Railway Tunnel Group</span></div>
+        <div class="client-item"><img src="assets/logo-crtg.png" alt="CRTG - China Railway Tunnel Group"></div>
         <div class="client-item"><img src="assets/logo-carrochile.png" alt="CarroChile"></div>
-        <div class="client-item client-name"><b>Delegación del País Vasco</b><span>en Chile</span></div>
+        <div class="client-item client-logo-label"><img src="assets/logo-pais-vasco.png" alt="Escudo del País Vasco"><span>Delegación del País Vasco<br>en Chile</span></div>
         <div class="client-item"><img src="assets/logo-rio-claro.png" alt="Papelera Río Claro"></div>
         <div class="client-item"><img src="assets/logo-corona.png" alt="Corona"></div>
         <div class="client-item"><img src="assets/logo-nutra-bien.png" alt="Nutra Bien"></div>
         <!-- copia para el desplazamiento continuo -->
-        <div aria-hidden="true" class="client-item client-name"><b>FERROVIAL</b><span>Construcción Chile S.A.</span></div>
+        <div aria-hidden="true" class="client-item"><img src="assets/logo-ferrovial.png" alt=""></div>
         <div aria-hidden="true" class="client-item"><img src="assets/logo-metro.png" alt=""></div>
-        <div aria-hidden="true" class="client-item client-name"><b>BESALCO DRAGADOS</b></div>
+        <div aria-hidden="true" class="client-item"><img src="assets/logo-besalco-dragados.png" alt=""></div>
         <div aria-hidden="true" class="client-item"><img src="assets/logo-mop.png" alt=""></div>
-        <div aria-hidden="true" class="client-item client-name"><b>CRTG</b><span>China Railway Tunnel Group</span></div>
+        <div aria-hidden="true" class="client-item"><img src="assets/logo-crtg.png" alt=""></div>
         <div aria-hidden="true" class="client-item"><img src="assets/logo-carrochile.png" alt=""></div>
-        <div aria-hidden="true" class="client-item client-name"><b>Delegación del País Vasco</b><span>en Chile</span></div>
+        <div aria-hidden="true" class="client-item client-logo-label"><img src="assets/logo-pais-vasco.png" alt=""><span>Delegación del País Vasco<br>en Chile</span></div>
         <div aria-hidden="true" class="client-item"><img src="assets/logo-rio-claro.png" alt=""></div>
         <div aria-hidden="true" class="client-item"><img src="assets/logo-corona.png" alt=""></div>
         <div aria-hidden="true" class="client-item"><img src="assets/logo-nutra-bien.png" alt=""></div>
